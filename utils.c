@@ -49,17 +49,17 @@ char	*ft_strjoin3(char const *s1, char const *s2, char const *s3)
 	if (!output)
 		return (NULL);
 	i = 0;
-	while (output && s1[i])
+	while (output && s1 && s1[i])
 	{
 		output[i] = ((char *)s1)[i];
 		i++;
 	}
-	while (output && *s2)
+	while (output && s2 && *s2)
 	{
 		output[i++] = *(char *)s2;
 		s2++;
 	}
-	while (output && *s3)
+	while (output && s3 && *s3)
 	{
 		output[i++] = *(char *)s3;
 		s3++;

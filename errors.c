@@ -31,13 +31,18 @@ void	ft_command_fail(t_pipex *pipex)
 {
 	char	*msg;
 
-	msg = ft_strjoin3("pipex: command not found: ", pipex->child_args[0], "\n");
-	if (!msg)
-		write(STDERR_FILENO, "pipex: command not found\n", 25);
+	if (!pipex->child_args[0])
+		write(STDERR_FILENO, "pipex: command not found ''\n", 28);
 	else
 	{
-		write(STDERR_FILENO, msg, ft_strlen(msg));
-		free(msg);
+		msg = ft_strjoin3("pipex: command not found: ", pipex->child_args[0], "\n");
+		if (!msg)
+			write(STDERR_FILENO, "pipex: command not found\n", 25);
+		else
+		{
+			write(STDERR_FILENO, msg, ft_strlen(msg));
+			free(msg);
+		}
 	}
 	ft_freetable(pipex->child_args);
 	ft_freetable(pipex->paths);
