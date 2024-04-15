@@ -55,13 +55,10 @@ void	ft_heredoc(t_pipex *pipex)
 		buffer = get_next_line(STDIN_FILENO);
 		if (!buffer)
 			ft_byedoc(pipex);
-		if ((ft_strncmp("", pipex->args[2], ft_strlen(pipex->args[2])) == 0)
-			&& (ft_strncmp("\n", buffer, ft_strlen(buffer)) == 0))
+		buffer[ft_strlen(buffer) - 1] = '\0';
+		if (ft_strncmp(buffer, pipex->args[2], ft_strlen(buffer) + 1) == 0)
 			break ;
-		if (ft_strncmp(buffer, "\n", 1) != 0)
-			if (ft_strncmp(buffer, pipex->args[2],
-					(ft_strlen(buffer) - 1)) == 0)
-				break ;
+		buffer[ft_strlen(buffer)] = '\n';
 		write(pipex->infile_fd, buffer, ft_strlen(buffer));
 		free(buffer);
 	}
