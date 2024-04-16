@@ -88,7 +88,7 @@ int	main(int argc, char **argv, char **envp)
 	ft_pipex_init(&pipex, argc, argv, envp);
 	if (argc >= 5 && ft_strncmp(argv[1], "here_doc", 8) == 0)
 		ft_heredoc(&pipex);
-	if (argc >= 5 || (argc >= 6 && pipex.heredoc == 1))
+	if ((argc >= 5 && pipex.heredoc == 0) || (argc >= 6 && pipex.heredoc == 1))
 		ft_bonus_pipex(&pipex);
 	else if (pipex.heredoc == 0)
 	{

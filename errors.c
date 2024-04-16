@@ -50,8 +50,13 @@ void	ft_command_fail(t_pipex *pipex)
 		close(pipex->outfile_fd);
 	if (pipex->infile_fd != -1)
 		close(pipex->infile_fd);
-	close(pipex->pipe_fd[0]);
-	close(pipex->pipe_fd[1]);
+	if (pipex->pipe_fd[0] != -1)
+	{
+		close(pipex->pipe_fd[0]);
+		close(pipex->pipe_fd[1]);
+	}
+	if (pipex->temp_fd_out != -1)
+		close(pipex->temp_fd_out);
 	exit(EXIT_FAILURE);
 }
 
