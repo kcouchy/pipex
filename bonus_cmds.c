@@ -96,8 +96,8 @@ void	ft_wait_parent(t_pipex *pipex)
 
 	i = 1;
 	waitpid(pipex->pid_last, &pipex->exit_code, 0);
-	if (pipex->exit_code == 256)
-		pipex->exit_code = 127;
+	if (WIFEXITED(pipex->exit_code))
+		pipex->exit_code = WEXITSTATUS(pipex->exit_code);
 	while (i < pipex->commands)
 	{
 		wait(NULL);

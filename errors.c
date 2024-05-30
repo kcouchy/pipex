@@ -57,7 +57,7 @@ void	ft_command_fail(t_pipex *pipex)
 	}
 	if (pipex->temp_fd_out != -1)
 		close(pipex->temp_fd_out);
-	exit(EXIT_FAILURE);
+	exit(CMDNOTFOUND);
 }
 
 void	ft_parse_fail(t_pipex *pipex)

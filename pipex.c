@@ -99,6 +99,8 @@ void	ft_pipex(t_pipex *pipex)
 		close(pipex->pipe_fd[1]);
 		waitpid(pipex->pid, NULL, 0);
 		waitpid(pipex->pid_last, &pipex->exit_code, 0);
+		if (WIFEXITED(pipex->exit_code))
+			pipex->exit_code = WEXITSTATUS(pipex->exit_code);
 	}
 }
 
@@ -121,7 +123,5 @@ int	main(int argc, char **argv, char **envp)
 	else
 		ft_printf("pipex input error: ./pipex infile cmd1 cmd2 outfile\n");
 	ft_freetable(pipex.paths);
-	if (pipex.exit_code == 256)
-		pipex.exit_code = 127;
 	return (pipex.exit_code);
 }
