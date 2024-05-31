@@ -31,6 +31,7 @@ void	ft_bonus_last_cmd(t_pipex *pipex)
 		exit(EXIT_FAILURE);
 	}
 	dup2(pipex->outfile_fd, STDOUT_FILENO);
+	close(pipex->outfile_fd);
 }
 
 void	ft_bonus_first_cmd(t_pipex *pipex)
@@ -50,6 +51,7 @@ void	ft_bonus_first_cmd(t_pipex *pipex)
 		exit(EXIT_FAILURE);
 	}
 	dup2(pipex->infile_fd, STDIN_FILENO);
+	close(pipex->infile_fd);
 }
 
 void	ft_bonus_mid_cmd(t_pipex *pipex)
